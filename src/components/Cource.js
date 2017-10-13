@@ -2,10 +2,29 @@ import React, { Component } from 'react';
 import Lession from './Lession'
 
 class Cource extends Component {
+
+    constructor(props) {
+        super(props);
+        this.handleRegistry = this.handleRegistry.bind(this);
+    }
+
+    handleRegistry() {
+        console.log(this.refs.username.value);
+    }
+
     showRegistryBtn() {
         const isFree = this.props.free;
         if(isFree) {
             return <button className="btn btn-default">Registry</button>
+        } else {
+            return (
+                <div className="input-group">
+                    <span className="input-group-btn">
+                        <button onClick={this.handleRegistry} className="btn btn-default" type="button">Registry</button>
+                    </span>
+                    <input type="text" className="form-control" placeholder="Username" ref="username" />
+                </div>
+            )
         }
     }
 
