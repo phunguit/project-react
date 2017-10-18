@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Cource from './components/Cource'
+import Cource from './components/Cource';
+import Lifecycle from './components/Lifecycle';
 
 class App extends Component {
     render() {
@@ -22,8 +23,13 @@ class App extends Component {
             <Cource key={index} name={cource.name} free={cource.free} />
         )
 
+        courceEles = null;
+
         return (
-            <div className="row">{courceEles}</div>
+            <div className="row">
+                {courceEles}
+                <Lifecycle />
+            </div>
         );
     }
 }
