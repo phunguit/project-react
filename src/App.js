@@ -3,8 +3,18 @@ import Title from './components/Title';
 import Control from './components/Control';
 import Form from './components/Form';
 import List from './components/List';
+import Jobs from './data/jobs';
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            items : Jobs
+        }
+    }
+
     render() {
 
         return (
@@ -22,7 +32,7 @@ class App extends Component {
                 {/* FORM : END */}
 
                 {/* LIST : START */}
-                <List />
+                <List items={this.state.items}/>
             </div>
         );
     }
