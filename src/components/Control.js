@@ -9,6 +9,7 @@ class Control extends Component {
 
 		this.state = {};
 		this.handleAdd = this.handleAdd.bind(this);
+		// this.props.onSearchSubmit
 	}
 
 	handleAdd() {
@@ -23,7 +24,7 @@ class Control extends Component {
 
         return (
             <div className="row">
-			   <Search />
+			   <Search onSearchGo={this.props.onSearchSubmit} />
 
 			   <Sort />
 

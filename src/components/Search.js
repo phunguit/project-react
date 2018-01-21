@@ -12,10 +12,11 @@ class Search extends Component {
       this.handleSearch = this.handleSearch.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleClear  = this.handleClear.bind(this);
+      // this.props.onSearchGo
     }
 
     handleSearch() {
-      console.log(this.state.strSearch);
+      this.props.onSearchGo(this.state.strSearch);
     }
 
     handleChange(event) {
@@ -28,6 +29,7 @@ class Search extends Component {
       this.setState({
         strSearch: ''
       });
+      this.props.onSearchGo('');
     }
 
     render() {

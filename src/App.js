@@ -16,7 +16,8 @@ class App extends Component {
             strSearch: ''
         }
 
-        this.handleToggleForm = this.handleToggleForm.bind(this);
+        this.handleToggleForm   = this.handleToggleForm.bind(this);
+        this.handleSearch       = this.handleSearch.bind(this);
     }
 
     handleToggleForm() {
@@ -25,8 +26,14 @@ class App extends Component {
         });
     }
 
-    render() {
+    handleSearch(value) {
+        this.setState({
+            strSearch: value
+        });
+    }
 
+    render() {
+        console.log(this.state.strSearch);
         let eleForm = null;
 
         if(this.state.isShowForm) {
@@ -38,11 +45,13 @@ class App extends Component {
 
                 <Title />
                 
-                <Control onClickAdd={this.handleToggleForm} isShowForm={this.state.isShowForm} />
+                <Control onClickAdd = {this.handleToggleForm}
+                    onSearchSubmit = {this.handleSearch}
+                    isShowForm = {this.state.isShowForm} />
 
                 {eleForm}
 
-                <List items={this.state.items}/>
+                <List items = {this.state.items}/>
             </div>
         );
     }
