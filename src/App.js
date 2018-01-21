@@ -11,27 +11,32 @@ class App extends Component {
         super(props);
 
         this.state = {
-            items : Jobs
+            items : Jobs,
+            isShowForm: false
         }
+
+        this.handleToggleForm = this.handleToggleForm.bind(this);
+    }
+
+    handleToggleForm() {
+        this.setState({
+            isShowForm: !this.state.isShowForm
+        });
     }
 
     render() {
 
+        let eleForm = null;
+
+        if(this.state.isShowForm) {
+            eleForm = <Form />
+        }
+
         return (
             <div className='row'>
-                {/* TITLE : START */}
                 <Title />
-                {/* TITLE : END */}
-
-                {/* CONTROL (SEARCH + SORT + ADD) : START */}                
-                <Control />
-                {/* CONTROL (SEARCH + SORT + ADD) : END */}
-
-                {/* FORM : START */}
-                <Form />
-                {/* FORM : END */}
-
-                {/* LIST : START */}
+                <Control onClickAdd={this.handleToggleForm} />
+                {eleForm}                
                 <List items={this.state.items}/>
             </div>
         );

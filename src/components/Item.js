@@ -10,7 +10,6 @@ class Item extends Component {
 
     render() {
         let {item} = this.props;
-        console.log(this.props.item);
         let {index} = this.props;
 
         return (
