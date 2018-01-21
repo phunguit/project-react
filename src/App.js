@@ -12,7 +12,8 @@ class App extends Component {
 
         this.state = {
             items : Jobs,
-            isShowForm: false
+            isShowForm: false,
+            strSearch: ''
         }
 
         this.handleToggleForm = this.handleToggleForm.bind(this);
