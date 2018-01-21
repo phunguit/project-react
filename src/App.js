@@ -29,14 +29,18 @@ class App extends Component {
         let eleForm = null;
 
         if(this.state.isShowForm) {
-            eleForm = <Form />
+            eleForm = <Form onClickAdd={this.handleToggleForm} />
         }
 
         return (
             <div className='row'>
+
                 <Title />
-                <Control onClickAdd={this.handleToggleForm} />
-                {eleForm}                
+                
+                <Control onClickAdd={this.handleToggleForm} isShowForm={this.state.isShowForm} />
+
+                {eleForm}
+
                 <List items={this.state.items}/>
             </div>
         );

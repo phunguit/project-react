@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 
 class Form extends Component {
+
+    constructor(props) {
+      super(props);
+
+      this.state = {};
+      this.handleClose = this.handleClose.bind(this);
+    }
+
+    handleClose() {
+      this.props.onClickAdd();
+    }
+
     render() {
 
         return (
@@ -20,7 +32,7 @@ class Form extends Component {
                         </select>
                      </div>
                      <button type="button" className="btn btn-primary">Submit</button>
-                     <button type="button" className="btn btn-default">Cancel</button>
+                     <button onClick={this.handleClose} type="button" className="btn btn-default">Cancel</button>
                   </form>
                </div>
             </div>

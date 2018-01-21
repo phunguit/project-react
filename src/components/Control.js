@@ -16,18 +16,19 @@ class Control extends Component {
 	}
 
     render() {
+    	var eleBtn = <button onClick={this.handleAdd} type="button" className="btn btn-info btn-block">Add Task</button>;
+    	if(this.props.isShowForm === true) {
+    		eleBtn = <button onClick={this.handleAdd} type="button" className="btn btn-success btn-block">Close</button>;
+    	}
 
         return (
             <div className="row">
 			   <Search />
 
 			   <Sort />
+
+			   <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">{eleBtn}</div>
 			   
-			   {/* ADD : START */}
-			   <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-				  <button onClick={this.handleAdd} type="button" className="btn btn-info btn-block">Add Task</button>
-			   </div>
-			   {/* ADD : END */}
 			</div>
         );
     }
