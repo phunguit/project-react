@@ -4,6 +4,7 @@ import Control from './components/Control';
 import Form from './components/Form';
 import List from './components/List';
 import Jobs from './data/jobs';
+import {filter, includes} from 'lodash';
 
 class App extends Component {
 
@@ -37,19 +38,11 @@ class App extends Component {
 
         var itemOrigins = this.state.items;
         var strSearch   = this.state.strSearch;
-        var items       = []; 
+        var items       = [];
 
-        if(strSearch.length > 0) {
-            itemOrigins.forEach(function(item, index) {
-                if(item.name.indexOf(strSearch) != -1) {
-                    items.push(item);
-                }
-            });
-
-        } else {
-            items = itemOrigins;
-        }
-
+        items = filter(itemOrigins, function(item) {
+            return includes(item.name, strSearch);
+        });
 
         if(this.state.isShowForm) {
             eleForm = <Form onClickAdd={this.handleToggleForm} />
