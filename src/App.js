@@ -33,8 +33,23 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state.strSearch);
         let eleForm = null;
+
+        var itemOrigins = this.state.items;
+        var strSearch   = this.state.strSearch;
+        var items       = []; 
+
+        if(strSearch.length > 0) {
+            itemOrigins.forEach(function(item, index) {
+                if(item.name.indexOf(strSearch) != -1) {
+                    items.push(item);
+                }
+            });
+
+        } else {
+            items = itemOrigins;
+        }
+
 
         if(this.state.isShowForm) {
             eleForm = <Form onClickAdd={this.handleToggleForm} />
@@ -51,7 +66,7 @@ class App extends Component {
 
                 {eleForm}
 
-                <List items = {this.state.items}/>
+                <List items = {items}/>
             </div>
         );
     }
