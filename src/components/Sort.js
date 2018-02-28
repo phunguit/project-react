@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 
 class Sort extends Component {
+
+    constructor(props) {
+      super(props);
+
+    }
+
     render() {
+
+        var {orderBy, orderDir} = this.props;        
+        let searchLabel = orderBy + ' - ' + orderDir;
 
         return (
             <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -16,7 +25,7 @@ class Sort extends Component {
                   <li><a role="button">Level ASC</a></li>
                   <li><a role="button">Level DESC</a></li>
                 </ul>
-                <span className="label label-success label-medium">NAME - DESC</span>
+                <span className="label label-success label-medium">{searchLabel}</span>
               </div>
             </div>
         );
