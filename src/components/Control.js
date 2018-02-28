@@ -28,7 +28,7 @@ class Control extends Component {
             <div className="row">
 			   <Search onSearchGo={this.props.onSearchSubmit} />
 
-			   <Sort orderBy={orderBy} orderDir={orderDir} />
+			   <Sort onClickSort={this.props.onClickSort} orderBy={orderBy} orderDir={orderDir} />
 
 			   <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">{eleBtn}</div>
 			   

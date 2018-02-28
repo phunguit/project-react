@@ -21,6 +21,7 @@ class App extends Component {
 
         this.handleToggleForm   = this.handleToggleForm.bind(this);
         this.handleSearch       = this.handleSearch.bind(this);
+        this.handleSort         = this.handleSort.bind(this);
     }
 
     handleToggleForm() {
@@ -35,13 +36,20 @@ class App extends Component {
         });
     }
 
+    handleSort(a, b) {
+        this.setState({
+            orderBy: a,
+            orderDir: b
+        });
+    }
+
     render() {
         let eleForm = null;
 
         var itemOrigins = this.state.items;
         var items       = [];
         let {strSearch, orderBy, orderDir}          = this.state;
-
+        
         items = filter(itemOrigins, function(item) {
             return includes(item.name, strSearch);
         });
@@ -55,10 +63,12 @@ class App extends Component {
 
                 <Title />
                 
-                <Control orderBy = {orderBy} orderDir = {orderDir} onClickAdd = {this.handleToggleForm}
+                <Control onClickSort = {this.handleSort} orderBy = {orderBy} orderDir = {orderDir} onClickAdd = {this.handleToggleForm}
                     onSearchSubmit = {this.handleSearch}
                     isShowForm = {this.state.isShowForm} />
+                
                 {eleForm}
+
                 <List items = {items}/>
             </div>
         );
