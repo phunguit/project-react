@@ -4,7 +4,7 @@ import Control from './components/Control';
 import Form from './components/Form';
 import List from './components/List';
 import Jobs from './data/jobs';
-import {filter, includes, orderBy as functionSort} from 'lodash';
+import {filter, includes, orderBy as functionSort, remove} from 'lodash';
 
 class App extends Component {
 
@@ -22,6 +22,7 @@ class App extends Component {
         this.handleToggleForm   = this.handleToggleForm.bind(this);
         this.handleSearch       = this.handleSearch.bind(this);
         this.handleSort         = this.handleSort.bind(this);
+        this.handleDel          = this.handleDel.bind(this);
     }
 
     handleToggleForm() {
@@ -40,6 +41,18 @@ class App extends Component {
         this.setState({
             orderBy: a,
             orderDir: b
+        });
+    }
+
+    handleDel(id) {
+        
+        let items = this.state.items;
+        remove(items, (item) => {
+            return item.id === id;
+        });
+
+        this.setState({
+            items: items
         });
     }
 
@@ -71,7 +84,7 @@ class App extends Component {
                 
                 {eleForm}
 
-                <List items = {items}/>
+                <List onClickDel={this.handleDel} items = {items}/>
             </div>
         );
     }

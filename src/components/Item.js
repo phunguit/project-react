@@ -6,6 +6,11 @@ class Item extends Component {
       super(props);
 
       this.state = {};
+      this.handleDel = this.handleDel.bind(this);
+    }
+
+    handleDel(id) {
+      this.props.onClickDel(id);
     }
 
     render() {
@@ -19,7 +24,7 @@ class Item extends Component {
                <td className="text-center">{this.getLevel(item.level)}</td>
                <td>
                   <button type="button" className="btn btn-warning">Edit</button>
-                  <button type="button" className="btn btn-danger">Delete</button>
+                  <button type="button" onClick={() => this.handleDel(item.id)} className="btn btn-danger">Delete</button>
                </td>
             </tr>
         );
