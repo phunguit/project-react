@@ -4,7 +4,7 @@ import Control from './components/Control';
 import Form from './components/Form';
 import List from './components/List';
 import Jobs from './data/jobs';
-import {filter, includes} from 'lodash';
+import {filter, includes, orderBy as functionSort} from 'lodash';
 
 class App extends Component {
 
@@ -53,6 +53,8 @@ class App extends Component {
         items = filter(itemOrigins, function(item) {
             return includes(item.name, strSearch);
         });
+
+        items = functionSort(items, [orderBy], [orderDir]);
 
         if(this.state.isShowForm) {
             eleForm = <Form onClickAdd={this.handleToggleForm} />
