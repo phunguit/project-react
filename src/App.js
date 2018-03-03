@@ -5,6 +5,7 @@ import Form from './components/Form';
 import List from './components/List';
 import Jobs from './data/jobs';
 import {filter, includes, orderBy as functionSort, remove} from 'lodash';
+const uuidv4 = require('uuid/v4');
 
 class App extends Component {
 
@@ -58,7 +59,20 @@ class App extends Component {
     }
 
     handleSubmit(item) {
-        console.log(item);
+        let items = this.state.items;
+
+        items.push(
+            {
+                id: uuidv4(),
+                name: item.name,
+                level: +item.level
+            }
+        );
+
+        this.setState({
+            items: items,
+            isShowForm: false
+        })
     }
 
     render() {
@@ -67,7 +81,7 @@ class App extends Component {
         var itemOrigins = this.state.items;
         var items       = [];
         let {strSearch, orderBy, orderDir}          = this.state;
-        
+
         items = filter(itemOrigins, function(item) {
             return includes(item.name, strSearch);
         });
