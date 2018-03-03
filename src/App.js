@@ -23,6 +23,7 @@ class App extends Component {
         this.handleSearch       = this.handleSearch.bind(this);
         this.handleSort         = this.handleSort.bind(this);
         this.handleDel          = this.handleDel.bind(this);
+        this.handleSubmit       = this.handleSubmit.bind(this);
     }
 
     handleToggleForm() {
@@ -56,6 +57,10 @@ class App extends Component {
         });
     }
 
+    handleSubmit(item) {
+        console.log(item);
+    }
+
     render() {
         let eleForm = null;
 
@@ -70,7 +75,7 @@ class App extends Component {
         items = functionSort(items, [orderBy], [orderDir]);
 
         if(this.state.isShowForm) {
-            eleForm = <Form onClickAdd={this.handleToggleForm} />
+            eleForm = <Form onClickSubmit={this.handleSubmit} onClickAdd={this.handleToggleForm} />
         }
 
         return (
