@@ -26,6 +26,17 @@ class Form extends Component {
       }
     }
 
+    componentWillReceiveProps(nextProps) {
+      var item = nextProps.itemSelected;
+      if(item != null && item.id != null) {
+        this.setState({
+          id: item.id,
+          name: item.name,
+          level: item.level
+        });
+      }
+    }
+
     handleClose() {
       this.props.onClickAdd();
     }
