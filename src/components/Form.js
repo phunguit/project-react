@@ -17,7 +17,7 @@ class Form extends Component {
 
     componentWillMount() {
       var item = this.props.itemSelected;
-      if(item.id) {
+      if(item != null && item.id != null) {
         this.setState({
           id: item.id,
           name: item.name,

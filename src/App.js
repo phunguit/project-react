@@ -4,7 +4,7 @@ import Control from './components/Control';
 import Form from './components/Form';
 import List from './components/List';
 import Jobs from './data/jobs';
-import {filter, includes, orderBy as functionSort, remove} from 'lodash';
+import {filter, includes, orderBy as functionSort, remove, reject} from 'lodash';
 const uuidv4 = require('uuid/v4');
 
 class App extends Component {
@@ -62,24 +62,22 @@ class App extends Component {
 
     handleSubmit(item) {
         let items = this.state.items;
-        
+        let id  = null;
+
         if(item.id !== null) {
-            items.forEach(function(value, key) {
-                if(value.id === item.id) {
-                    
-                    items[key].name = item.name;
-                    items[key].level = +item.level;
-                }
-            });
+            id = item.id;
+            items = reject(items, {id: item.id});            
         } else {
-            items.push(
-                {
-                    id: uuidv4(),
-                    name: item.name,
-                    level: +item.level
-                }
-            );    
+            id = uuidv4();
         }        
+
+        items.push(
+            {
+                id: id,
+                name: item.name,
+                level: +item.level
+            }
+        );
 
         this.setState({
             items: items,
