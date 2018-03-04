@@ -62,14 +62,24 @@ class App extends Component {
 
     handleSubmit(item) {
         let items = this.state.items;
-
-        items.push(
-            {
-                id: uuidv4(),
-                name: item.name,
-                level: +item.level
-            }
-        );
+        
+        if(item.id !== null) {
+            items.forEach(function(value, key) {
+                if(value.id === item.id) {
+                    
+                    items[key].name = item.name;
+                    items[key].level = +item.level;
+                }
+            });
+        } else {
+            items.push(
+                {
+                    id: uuidv4(),
+                    name: item.name,
+                    level: +item.level
+                }
+            );    
+        }        
 
         this.setState({
             items: items,
