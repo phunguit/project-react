@@ -34,6 +34,14 @@ class Form extends Component {
     }
 
     render() {
+        var nameValue   = this.state.name;
+        var levelValue  = this.state.level;
+
+        var item = this.props.itemSelected;
+        if(item.id) {
+          nameValue = item.name;
+          levelValue = item.level;
+        }
 
         return (
             <div className="row">
@@ -41,11 +49,11 @@ class Form extends Component {
                   <form onSubmit={this.handleSubmit} className="form-inline">
                      <div className="form-group">
                         <label className="sr-only">label</label>
-                        <input value={this.state.name} name="name" onChange={this.handleChange} type="text" className="form-control" placeholder="Task Name" ref="task_name" />
+                        <input value={nameValue} name="name" onChange={this.handleChange} type="text" className="form-control" placeholder="Task Name" ref="task_name" />
                      </div>
                      <div className="form-group">
                         <label className="sr-only">label</label>
-                        <select value={this.state.level} onChange={this.handleChange} name="level" className="form-control" required="required" ref="task_level">
+                        <select value={levelValue} onChange={this.handleChange} name="level" className="form-control" required="required" ref="task_level">
                            <option value={0}>Small</option>
                            <option value={1}>Medium</option>
                            <option value={2}>High</option>                           
