@@ -17,7 +17,8 @@ class App extends Component {
             isShowForm: false,
             strSearch: '',
             orderBy: 'name',
-            orderDir: 'desc'
+            orderDir: 'desc',
+            itemSelected: null
         }
 
         this.handleToggleForm   = this.handleToggleForm.bind(this);
@@ -25,6 +26,7 @@ class App extends Component {
         this.handleSort         = this.handleSort.bind(this);
         this.handleDel          = this.handleDel.bind(this);
         this.handleSubmit       = this.handleSubmit.bind(this);
+        this.handleEdit         = this.handleEdit.bind(this);
     }
 
     handleToggleForm() {
@@ -75,12 +77,20 @@ class App extends Component {
         })
     }
 
+    handleEdit(item) {
+
+        this.setState({
+            itemSelected: item,
+            isShowForm: true
+        });
+    }
+
     render() {
         let eleForm = null;
 
         var itemOrigins = this.state.items;
         var items       = [];
-        let {strSearch, orderBy, orderDir}          = this.state;
+        let {strSearch, orderBy, orderDir, itemSelected}          = this.state;
 
         items = filter(itemOrigins, function(item) {
             return includes(item.name, strSearch);
@@ -89,7 +99,10 @@ class App extends Component {
         items = functionSort(items, [orderBy], [orderDir]);
 
         if(this.state.isShowForm) {
-            eleForm = <Form onClickSubmit={this.handleSubmit} onClickAdd={this.handleToggleForm} />
+            eleForm = <Form 
+                        onClickSubmit={this.handleSubmit}
+                        itemSelected={itemSelected}
+                        onClickAdd={this.handleToggleForm} />
         }
 
         return (
@@ -103,7 +116,7 @@ class App extends Component {
                 
                 {eleForm}
 
-                <List onClickDel={this.handleDel} items = {items}/>
+                <List onClickEdit={this.handleEdit} onClickDel={this.handleDel} items = {items}/>
             </div>
         );
     }

@@ -6,11 +6,16 @@ class Item extends Component {
       super(props);
 
       this.state = {};
-      this.handleDel = this.handleDel.bind(this);
+      this.handleDel  = this.handleDel.bind(this);
+      this.handleEdit = this.handleEdit.bind(this);
     }
 
     handleDel(id) {
       this.props.onClickDel(id);
+    }
+
+    handleEdit(item) {
+      this.props.onClickEdit(item);
     }
 
     render() {
@@ -23,7 +28,7 @@ class Item extends Component {
                <td>{item.name}</td>
                <td className="text-center">{this.getLevel(item.level)}</td>
                <td>
-                  <button type="button" className="btn btn-warning">Edit</button>
+                  <button type="button" onClick={() => this.handleEdit(item)} className="btn btn-warning">Edit</button>
                   <button type="button" onClick={() => this.handleDel(item.id)} className="btn btn-danger">Delete</button>
                </td>
             </tr>
