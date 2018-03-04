@@ -29,6 +29,15 @@ class App extends Component {
         this.handleEdit         = this.handleEdit.bind(this);
     }
 
+    componentWillMount() {
+
+        let items = JSON.parse(localStorage.getItem('jobs'));
+        
+        this.setState({
+            items: items
+        });
+    }
+
     handleToggleForm() {
         this.setState({
             isShowForm: !this.state.isShowForm
@@ -64,7 +73,7 @@ class App extends Component {
         let items = this.state.items;
         let id  = null;
 
-        if(item.id !== null) {
+        if(item.id !== '') {
             id = item.id;
             items = reject(items, {id: item.id});            
         } else {
@@ -82,7 +91,9 @@ class App extends Component {
         this.setState({
             items: items,
             isShowForm: false
-        })
+        });
+        
+        localStorage.setItem('jobs', JSON.stringify(items));
     }
 
     handleEdit(item) {
