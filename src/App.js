@@ -4,6 +4,8 @@ import Control from './components/Control';
 import Form from './components/Form';
 import List from './components/List';
 import Jobs from './data/jobs';
+import redux from './redux';
+
 import {filter, includes, orderBy as functionSort, remove, reject} from 'lodash';
 const uuidv4 = require('uuid/v4');
 
