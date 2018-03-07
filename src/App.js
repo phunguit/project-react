@@ -35,6 +35,10 @@ class App extends Component {
 
         let items = JSON.parse(localStorage.getItem('jobs'));
         
+        if(items === null) {
+            items = this.state.items;
+        }
+
         this.setState({
             items: items
         });
