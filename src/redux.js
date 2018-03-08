@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { closeForm } from './actions/index';
+import { AcCloseForm, AcOrder } from './actions/index';
 
 var defaultState = {
     items : [],
@@ -23,6 +23,11 @@ let reducers = (state = defaultState, action) => {
 		case 'TOGGER_FORM':
 			state.isShowForm = !state.isShowForm;
 			return state;
+
+		case 'ORDER':
+			state.orderBy = action.orderBy;
+			state.orderDir = action.orderDir;
+			return state;
 			
 		default:
 			return state;
@@ -31,7 +36,10 @@ let reducers = (state = defaultState, action) => {
 
 const store = createStore(reducers);
 
-store.dispatch(closeForm());
+store.dispatch(AcCloseForm());
+console.log(store.getState());
+
+store.dispatch(AcOrder('level', 'asc'));
 console.log(store.getState());
 
 export default store;
