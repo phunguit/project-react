@@ -1,8 +1,8 @@
-var defaultState = [
-	{id: '123', name: 'ABC', level: 0},
-	{id: '456', name: 'DEF', level: 1},
-	{id: '789', name: 'JSK', level: 2}
-];
+var defaultState = [];
+
+let jobs = JSON.parse(localStorage.getItem('jobs'));
+
+defaultState = (jobs !== null && jobs.length > 0) ? jobs : defaultState;
 
 const items = (state = defaultState, action) => {
 	return defaultState;
