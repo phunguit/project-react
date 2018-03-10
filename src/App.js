@@ -141,7 +141,7 @@ class App extends Component {
                 
                 {eleForm}
 
-                <List onClickEdit={this.handleEdit} onClickDel={this.handleDel} items = {items}/>
+                <List onClickEdit={this.handleEdit} onClickDel={this.handleDel} />
             </div>
         );
     }
