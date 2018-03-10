@@ -110,7 +110,6 @@ class App extends Component {
     }
 
     render() {
-        let eleForm = null;
 
         var itemOrigins = this.state.items;
         var items       = [];
@@ -122,13 +121,6 @@ class App extends Component {
 
         items = functionSort(items, [orderBy], [orderDir]);
 
-        if(this.state.isShowForm) {
-            eleForm = <Form 
-                        onClickSubmit={this.handleSubmit}
-                        itemSelected={itemSelected}
-                        onClickAdd={this.handleToggleForm} />
-        }
-
         return (
             <div className='row'>
 
@@ -138,7 +130,10 @@ class App extends Component {
                     onSearchSubmit = {this.handleSearch}
                     isShowForm = {this.state.isShowForm} />
                 
-                {eleForm}
+                <Form 
+                    onClickSubmit={this.handleSubmit}
+                    itemSelected={itemSelected}
+                    onClickAdd={this.handleToggleForm} />
 
                 <List onClickEdit={this.handleEdit} onClickDel={this.handleDel} />
             </div>

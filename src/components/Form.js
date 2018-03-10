@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Form extends Component {
 
@@ -56,8 +57,11 @@ class Form extends Component {
       e.preventDefault();
     }
 
-    render() {       
-
+    render() {
+        let { isShowForm } = this.props;
+        if(!isShowForm) {
+          return null;
+        }
         return (
             <div className="row">
                <div className="col-md-offset-7 col-md-5">
@@ -82,4 +86,10 @@ class Form extends Component {
         );
     }
 }
-export default Form;
+
+var mapStateToProps = state => {
+  let isShowForm = state.isShowForm;
+  return { isShowForm };
+}
+
+export default connect(mapStateToProps, null)(Form);
