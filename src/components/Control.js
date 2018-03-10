@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import Sort from './Sort';
+import ToggerForm from './ToggerForm';
 
 class Control extends Component {
 
@@ -19,18 +20,13 @@ class Control extends Component {
     render() {
     	var {orderBy, orderDir} = this.props;
 
-    	var eleBtn = <button onClick={this.handleAdd} type="button" className="btn btn-info btn-block">Add Task</button>;
-    	if(this.props.isShowForm === true) {
-    		eleBtn = <button onClick={this.handleAdd} type="button" className="btn btn-success btn-block">Close</button>;
-    	}
-
         return (
             <div className="row">
 			   <Search onSearchGo={this.props.onSearchSubmit} />
 
 			   <Sort onClickSort={this.props.onClickSort} orderBy={orderBy} orderDir={orderDir} />
 
-			   <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">{eleBtn}</div>
+			   <ToggerForm />
 			   
 			</div>
         );
