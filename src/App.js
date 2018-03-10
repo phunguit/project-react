@@ -22,7 +22,6 @@ class App extends Component {
             itemSelected: null
         }
 
-        this.handleToggleForm   = this.handleToggleForm.bind(this);
         this.handleSearch       = this.handleSearch.bind(this);
         this.handleSort         = this.handleSort.bind(this);
         this.handleDel          = this.handleDel.bind(this);
@@ -40,12 +39,6 @@ class App extends Component {
 
         this.setState({
             items: items
-        });
-    }
-
-    handleToggleForm() {
-        this.setState({
-            isShowForm: !this.state.isShowForm
         });
     }
 
@@ -126,14 +119,13 @@ class App extends Component {
 
                 <Title />
                 
-                <Control onClickSort = {this.handleSort} orderBy = {orderBy} orderDir = {orderDir} onClickAdd = {this.handleToggleForm}
+                <Control onClickSort = {this.handleSort} orderBy = {orderBy} orderDir = {orderDir}
                     onSearchSubmit = {this.handleSearch}
                     isShowForm = {this.state.isShowForm} />
                 
                 <Form 
                     onClickSubmit={this.handleSubmit}
-                    itemSelected={itemSelected}
-                    onClickAdd={this.handleToggleForm} />
+                    itemSelected={itemSelected} />
 
                 <List onClickEdit={this.handleEdit} onClickDel={this.handleDel} />
             </div>
