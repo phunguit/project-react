@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Item from './Item';
+import { connect } from 'react-redux';
 
 class List extends Component {
 
@@ -34,4 +35,10 @@ class List extends Component {
         );
     }
 }
-export default List;
+
+const mapStateToProps = function(state) {
+  let items = state.items;
+  return {items}
+}
+
+export default connect(mapStateToProps, null)(List);
