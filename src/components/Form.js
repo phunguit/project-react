@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { AcToggerForm } from '../actions/index';
 
 class Form extends Component {
 
@@ -11,9 +12,9 @@ class Form extends Component {
         name: '',
         level: 1
       };
-      this.handleClose  = this.handleClose.bind(this);
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this); 
+      this.handleToggerForm = this.handleToggerForm.bind(this);
+      this.handleChange     = this.handleChange.bind(this);
+      this.handleSubmit     = this.handleSubmit.bind(this); 
     }
 
     componentWillMount() {
@@ -38,8 +39,8 @@ class Form extends Component {
       }
     }
 
-    handleClose() {
-      this.props.onClickAdd();
+    handleToggerForm() {
+      this.props.toggerForm();
     }
 
     handleChange(e) {
@@ -79,7 +80,7 @@ class Form extends Component {
                         </select>
                      </div>
                      <button type="submit" className="btn btn-primary">Submit</button>
-                     <button onClick={this.handleClose} type="button" className="btn btn-default">Cancel</button>
+                     <button onClick={this.handleToggerForm} type="button" className="btn btn-default">Cancel</button>
                   </form>
                </div>
             </div>
@@ -87,9 +88,17 @@ class Form extends Component {
     }
 }
 
-var mapStateToProps = state => {
+const mapStateToProps = state => {
   let isShowForm = state.isShowForm;
   return { isShowForm };
 }
 
-export default connect(mapStateToProps, null)(Form);
+const mapDispatchToProps = dispatch => {
+  return {
+    toggerForm: () => {
+      dispatch(AcToggerForm());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
