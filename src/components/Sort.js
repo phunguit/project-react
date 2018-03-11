@@ -4,13 +4,7 @@ import { AcOrder } from '../actions/index';
 
 class Sort extends Component {
 
-    constructor(props) {
-      super(props);
-
-      this.handleSort = this.handleSort.bind(this);
-    }
-
-    handleSort(orderBy, orderDir) {
+    handleSort = (orderBy, orderDir) => {
       this.props.sortItems(orderBy, orderDir);
     }
 
