@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Item from './Item';
 import { connect } from 'react-redux';
-import { filter, includes, orderBy as lodashOrder } from 'lodash';
+import { filter, includes, orderBy as lodashOrder, remove } from 'lodash';
 
 class List extends Component {
 
@@ -12,7 +12,7 @@ class List extends Component {
 
     render() {
         var itemsOrigins = this.props.items;
-        const { strSearch, orderBy, orderDir } = this.props;
+        const { strSearch, orderBy, orderDir, idToDelete } = this.props;
 
         var  items = filter(itemsOrigins, function(item) {
           return includes(item.name, strSearch);
@@ -20,11 +20,21 @@ class List extends Component {
 
         items = lodashOrder(items, [orderBy], [orderDir]);
 
+        if(idToDelete !== '') {
+          
+          remove(items, (item) => {
+            return item.id === idToDelete;
+          });
+
+          localStorage.setItem('jobs', JSON.stringify(items));
+        }
+
         const eleItem = items.map((item, index) => {
           return (
             <Item onClickEdit={this.props.onClickEdit} onClickDel={this.props.onClickDel} key={index} item={item} index={index} />
           );
         });
+
         return (
             <div className="panel panel-success">
                <div className="panel-heading">List Task</div>
@@ -45,7 +55,7 @@ class List extends Component {
 }
 
 const mapStateToProps = function(state) {
-  let { items, strSearch}   = state;
+  let { items, strSearch, idToDelete}   = state;
   let orderBy = state.sort.orderBy;
   let orderDir = state.sort.orderDir;
 
@@ -53,7 +63,8 @@ const mapStateToProps = function(state) {
     items,
     orderBy,
     orderDir,
-    strSearch
+    strSearch,
+    idToDelete
   }
 }
 

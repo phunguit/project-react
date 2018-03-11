@@ -21,3 +21,7 @@ export const AcOrder = (orderBy, orderDir) => {
 export const AcSearch = (strSearch) => {
 	return { type: 'SEARCH', strSearch}
 }
+
+export const AcDelete = id => {
+	return { type: 'DELETE', id }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AcOpenForm } from '../actions/index';
+import { AcOpenForm, AcDelete } from '../actions/index';
 
 class Item extends Component {
 
@@ -13,17 +13,15 @@ class Item extends Component {
     }
 
     handleDel(id) {
-      this.props.onClickDel(id);
+      this.props.deleteItem(id);
     }
 
     handleEdit(item) {
-      //this.props.onClickEdit(item);
       this.props.editForm();
     }
 
     render() {
-        let {item} = this.props;
-        let {index} = this.props;
+        let { item, index} = this.props;
 
         return (
             <tr>
@@ -54,6 +52,10 @@ const mapDispatchToProps = dispatch => {
   return {
     editForm: () => {
       dispatch(AcOpenForm())
+    },
+
+    deleteItem: id => {
+      dispatch(AcDelete(id));
     }
   }
 }

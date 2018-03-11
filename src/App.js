@@ -5,7 +5,7 @@ import Form from './components/Form';
 import List from './components/List';
 import Jobs from './data/jobs';
 
-import {orderBy as functionSort, remove, reject} from 'lodash';
+import {orderBy as functionSort, reject} from 'lodash';
 const uuidv4 = require('uuid/v4');
 
 class App extends Component {
@@ -21,8 +21,6 @@ class App extends Component {
             orderDir: 'desc',
             itemSelected: null
         }
-        this.handleSort         = this.handleSort.bind(this);
-        this.handleDel          = this.handleDel.bind(this);
         this.handleSubmit       = this.handleSubmit.bind(this);
         this.handleEdit         = this.handleEdit.bind(this);
     }
@@ -34,25 +32,6 @@ class App extends Component {
         if(items === null) {
             items = this.state.items;
         }
-
-        this.setState({
-            items: items
-        });
-    }
-
-    handleSort(a, b) {
-        this.setState({
-            orderBy: a,
-            orderDir: b
-        });
-    }
-
-    handleDel(id) {
-        
-        let items = this.state.items;
-        remove(items, (item) => {
-            return item.id === id;
-        });
 
         this.setState({
             items: items
@@ -117,7 +96,7 @@ class App extends Component {
                     onClickSubmit={this.handleSubmit}
                     itemSelected={itemSelected} />
 
-                <List onClickEdit={this.handleEdit} onClickDel={this.handleDel} />
+                <List onClickEdit={this.handleEdit} />
             </div>
         );
     }
