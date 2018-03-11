@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Item from './Item';
 import { connect } from 'react-redux';
+import { filter, includes } from 'lodash';
 
 class List extends Component {
 
@@ -10,7 +11,15 @@ class List extends Component {
     }
 
     render() {
-        const items = this.props.items;
+        var itemsOrigins = this.props.items;
+        const { strSearch } = this.props;
+
+        var items = itemsOrigins;
+        if(strSearch !== null) {
+          items = filter(itemsOrigins, function(item) {
+            return includes(item.name, strSearch);
+          });
+        }
 
         const eleItem = items.map((item, index) => {
           return (
@@ -37,8 +46,16 @@ class List extends Component {
 }
 
 const mapStateToProps = function(state) {
-  let items = state.items;
-  return {items}
+  let { items, strSearch}   = state;
+  let orderBy = state.sort.orderBy;
+  let orderDir = state.sort.orderDir;
+
+  return {
+    items,
+    orderBy,
+    orderDir,
+    strSearch
+  }
 }
 
 export default connect(mapStateToProps, null)(List);

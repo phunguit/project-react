@@ -5,7 +5,7 @@ import Form from './components/Form';
 import List from './components/List';
 import Jobs from './data/jobs';
 
-import {filter, includes, orderBy as functionSort, remove, reject} from 'lodash';
+import {orderBy as functionSort, remove, reject} from 'lodash';
 const uuidv4 = require('uuid/v4');
 
 class App extends Component {
@@ -21,8 +21,6 @@ class App extends Component {
             orderDir: 'desc',
             itemSelected: null
         }
-
-        this.handleSearch       = this.handleSearch.bind(this);
         this.handleSort         = this.handleSort.bind(this);
         this.handleDel          = this.handleDel.bind(this);
         this.handleSubmit       = this.handleSubmit.bind(this);
@@ -39,12 +37,6 @@ class App extends Component {
 
         this.setState({
             items: items
-        });
-    }
-
-    handleSearch(value) {
-        this.setState({
-            strSearch: value
         });
     }
 
@@ -104,24 +96,22 @@ class App extends Component {
 
     render() {
 
-        var itemOrigins = this.state.items;
-        var items       = [];
-        let {strSearch, orderBy, orderDir, itemSelected}          = this.state;
+        //var itemOrigins = this.state.items;
+        //var items       = [];
+        let {itemSelected}          = this.state;
 
-        items = filter(itemOrigins, function(item) {
+        /*items = filter(itemOrigins, function(item) {
             return includes(item.name, strSearch);
         });
 
-        items = functionSort(items, [orderBy], [orderDir]);
+        items = functionSort(items, [orderBy], [orderDir]);*/
 
         return (
             <div className='row'>
 
                 <Title />
                 
-                <Control onClickSort = {this.handleSort} orderBy = {orderBy} orderDir = {orderDir}
-                    onSearchSubmit = {this.handleSearch}
-                    isShowForm = {this.state.isShowForm} />
+                <Control />
                 
                 <Form 
                     onClickSubmit={this.handleSubmit}

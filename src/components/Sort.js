@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { AcOrder } from '../actions/index';
 
 class Sort extends Component {
 
@@ -9,7 +11,7 @@ class Sort extends Component {
     }
 
     handleSort(orderBy, orderDir) {
-      this.props.onClickSort(orderBy, orderDir);
+      this.props.sortItems(orderBy, orderDir);
     }
 
     render() {
@@ -36,4 +38,13 @@ class Sort extends Component {
         );
     }
 }
-export default Sort;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    sortItems: (orderBy, orderDir) => {
+      dispatch(AcOrder(orderBy, orderDir));
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Sort);

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { AcSearch } from '../actions/index';
 
 class Search extends Component {
 
@@ -12,11 +14,10 @@ class Search extends Component {
       this.handleSearch = this.handleSearch.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleClear  = this.handleClear.bind(this);
-      // this.props.onSearchGo
     }
 
     handleSearch() {
-      this.props.onSearchGo(this.state.strSearch);
+      this.props.mapSearch(this.state.strSearch);
     }
 
     handleChange(event) {
@@ -29,7 +30,7 @@ class Search extends Component {
       this.setState({
         strSearch: ''
       });
-      this.props.onSearchGo('');
+      this.props.mapSearch('');
     }
 
     render() {
@@ -47,4 +48,13 @@ class Search extends Component {
         );
     }
 }
-export default Search;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    mapSearch: (strSearch) => {
+      dispatch(AcSearch(strSearch))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Search);

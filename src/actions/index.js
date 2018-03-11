@@ -17,3 +17,7 @@ export const AcOrder = (orderBy, orderDir) => {
 		orderDir
 	}
 }
+
+export const AcSearch = (strSearch) => {
+	return { type: 'SEARCH', strSearch}
+}
