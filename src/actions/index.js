@@ -2,6 +2,10 @@ export const AcCloseForm = () => {
 	return {type: 'CLOSE_FORM'}
 }
 
+export const AcOpenForm = () => {
+	return {type: 'OPEN_FORM'}
+}
+
 export const AcToggerForm = () => {
 	return {type: 'TOGGER_FORM'}
 }

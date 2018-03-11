@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { AcOpenForm } from '../actions/index';
 
 class Item extends Component {
 
@@ -15,7 +17,8 @@ class Item extends Component {
     }
 
     handleEdit(item) {
-      this.props.onClickEdit(item);
+      //this.props.onClickEdit(item);
+      this.props.editForm();
     }
 
     render() {
@@ -46,4 +49,13 @@ class Item extends Component {
       return eleLevel;
     }
 }
-export default Item;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    editForm: () => {
+      dispatch(AcOpenForm())
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Item);
