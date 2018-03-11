@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Item from './Item';
 import { connect } from 'react-redux';
-import { filter, includes } from 'lodash';
+import { filter, includes, orderBy as lodashOrder } from 'lodash';
 
 class List extends Component {
 
@@ -12,11 +12,13 @@ class List extends Component {
 
     render() {
         var itemsOrigins = this.props.items;
-        const { strSearch } = this.props;
+        const { strSearch, orderBy, orderDir } = this.props;
 
         var  items = filter(itemsOrigins, function(item) {
           return includes(item.name, strSearch);
         });
+
+        items = lodashOrder(items, [orderBy], [orderDir]);
 
         const eleItem = items.map((item, index) => {
           return (

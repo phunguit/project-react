@@ -15,8 +15,7 @@ class Sort extends Component {
     }
 
     render() {
-
-        var {orderBy, orderDir} = this.props;        
+        var {orderBy, orderDir} = this.props;
         let searchLabel = orderBy + ' - ' + orderDir;
 
         return (
@@ -39,6 +38,13 @@ class Sort extends Component {
     }
 }
 
+const mapStateToProps = state => {
+  return {
+    orderBy: state.sort.orderBy,
+    orderDir: state.sort.orderDir
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     sortItems: (orderBy, orderDir) => {
@@ -47,4 +53,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Sort);
+export default connect(mapStateToProps, mapDispatchToProps)(Sort);
