@@ -14,12 +14,9 @@ class List extends Component {
         var itemsOrigins = this.props.items;
         const { strSearch } = this.props;
 
-        var items = itemsOrigins;
-        if(strSearch !== null) {
-          items = filter(itemsOrigins, function(item) {
-            return includes(item.name, strSearch);
-          });
-        }
+        var  items = filter(itemsOrigins, function(item) {
+          return includes(item.name, strSearch);
+        });
 
         const eleItem = items.map((item, index) => {
           return (
