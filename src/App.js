@@ -5,7 +5,7 @@ import Form from './components/Form';
 import List from './components/List';
 import Jobs from './data/jobs';
 
-import {orderBy as functionSort, reject} from 'lodash';
+import {reject} from 'lodash';
 const uuidv4 = require('uuid/v4');
 
 class App extends Component {

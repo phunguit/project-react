@@ -56,6 +56,11 @@ class Form extends Component {
     handleSubmit(e) {
       this.props.addItem(this.state);
       this.props.toggerForm();
+      this.setState ({
+        id: '',
+        name: '',
+        level: 1
+      });
       e.preventDefault();
     }
 
