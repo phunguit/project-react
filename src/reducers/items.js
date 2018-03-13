@@ -1,5 +1,6 @@
 import * as Types from '../constants/ActionTypes';
 import { remove } from 'lodash';
+const uuidv4 = require('uuid/v4');
 
 var defaultState = [
 	{id: '123', name: 'acc', level: 0},
@@ -20,7 +21,16 @@ const items = (state = defaultState, action) => {
           	});
 
           	localStorage.setItem('jobs', JSON.stringify(state));
-			return [...state];	
+			return [...state];
+
+		case Types.ADD:
+			state.push({
+				id: uuidv4(),
+				name: action.item.name,
+				level: action.item.level
+			});
+			localStorage.setItem('jobs', JSON.stringify(state));
+			return [...state];
 
 		default:
 			return defaultState;

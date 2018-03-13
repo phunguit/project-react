@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AcToggerForm } from '../actions/index';
+import { AcToggerForm, AcAdd } from '../actions/index';
 
 class Form extends Component {
 
@@ -54,7 +54,8 @@ class Form extends Component {
     }
 
     handleSubmit(e) {
-      this.props.onClickSubmit(this.state);
+      this.props.addItem(this.state);
+      this.props.toggerForm();
       e.preventDefault();
     }
 
@@ -97,6 +98,10 @@ const mapDispatchToProps = dispatch => {
   return {
     toggerForm: () => {
       dispatch(AcToggerForm());
+    },
+
+    addItem: (item) => {
+      dispatch(AcAdd(item));
     }
   }
 }

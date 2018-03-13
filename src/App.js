@@ -74,16 +74,7 @@ class App extends Component {
     }
 
     render() {
-
-        //var itemOrigins = this.state.items;
-        //var items       = [];
         let {itemSelected}          = this.state;
-
-        /*items = filter(itemOrigins, function(item) {
-            return includes(item.name, strSearch);
-        });
-
-        items = functionSort(items, [orderBy], [orderDir]);*/
 
         return (
             <div className='row'>

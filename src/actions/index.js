@@ -25,3 +25,7 @@ export const AcSearch = (strSearch) => {
 export const AcDelete = id => {
 	return { type: 'DELETE', id }
 }
+
+export const AcAdd = (item) => {
+	return { type: 'ADD', item }
+}
