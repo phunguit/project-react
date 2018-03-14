@@ -38,8 +38,6 @@ const items = (state = defaultState, action) => {
 			});
 
 			localStorage.setItem('jobs', JSON.stringify(state));
-			var a = [...state];
-			debugger
 			return [...state];
 
 		default:

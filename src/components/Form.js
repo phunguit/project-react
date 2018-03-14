@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AcToggerForm, AcSubmitForm } from '../actions/index';
+import { AcToggerForm, AcSubmitForm, AcUnSelectItem } from '../actions/index';
 
 class Form extends Component {
 
@@ -102,6 +102,7 @@ const mapDispatchToProps = dispatch => {
   return {
     toggerForm: () => {
       dispatch(AcToggerForm());
+      dispatch(AcUnSelectItem());
     },
 
     submitForm: (item) => {

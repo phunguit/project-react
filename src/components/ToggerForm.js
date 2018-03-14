@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { AcToggerForm } from '../actions/index';
+import { AcToggerForm, AcUnSelectItem } from '../actions/index';
 
 class ToggerForm extends Component {
 
@@ -38,7 +38,8 @@ var mapStateToProps = function(state) {
 var mapDispatchToProps = dispatch => {
 	return {
 		toggerForm: () => {
-			dispatch(AcToggerForm())
+			dispatch(AcToggerForm());
+			dispatch(AcUnSelectItem());
 		}
 	}
 }

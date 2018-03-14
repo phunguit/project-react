@@ -11,7 +11,6 @@ class List extends Component {
     }
 
     render() {
-        console.log(this.props.items);
         var itemsOrigins = this.props.items;
         const { strSearch, orderBy, orderDir } = this.props;
 
