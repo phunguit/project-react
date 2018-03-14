@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AcToggerForm, AcAdd } from '../actions/index';
+import { AcToggerForm, AcSubmitForm } from '../actions/index';
 
 class Form extends Component {
 
@@ -18,25 +18,25 @@ class Form extends Component {
     }
 
     componentWillMount() {
-      var item = this.props.itemSelected;
+      /*var item = this.props.itemSelected;
       if(item != null && item.id != null) {
         this.setState({
           id: item.id,
           name: item.name,
           level: item.level
         });
-      }
+      }*/
     }
 
     componentWillReceiveProps(nextProps) {
-      var item = nextProps.itemSelected;
+      /*var item = nextProps.itemSelected;
       if(item != null && item.id != null) {
         this.setState({
           id: item.id,
           name: item.name,
           level: item.level
         });
-      }
+      }*/
     }
 
     handleToggerForm() {
@@ -55,7 +55,6 @@ class Form extends Component {
 
     handleSubmit(e) {
       this.props.addItem(this.state);
-      this.props.toggerForm();
       this.setState ({
         id: '',
         name: '',
@@ -106,7 +105,8 @@ const mapDispatchToProps = dispatch => {
     },
 
     addItem: (item) => {
-      dispatch(AcAdd(item));
+      dispatch(AcSubmitForm(item));
+      dispatch(AcToggerForm());
     }
   }
 }

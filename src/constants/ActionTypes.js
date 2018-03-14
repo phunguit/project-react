@@ -4,4 +4,4 @@ export const TOGGER_FORM 	= 'TOGGER_FORM';
 export const ORDER 			= 'ORDER';
 export const SEARCH 		= 'SEARCH';
 export const DELETE 		= 'DELETE';
-export const ADD 			= 'ADD';
+export const SUBMIT_FORM 	= 'SUBMIT_FORM';

@@ -23,12 +23,13 @@ const items = (state = defaultState, action) => {
           	localStorage.setItem('jobs', JSON.stringify(state));
 			return [...state];
 
-		case Types.ADD:
+		case Types.SUBMIT_FORM:		
 			state.push({
 				id: uuidv4(),
 				name: action.item.name,
-				level: action.item.level
+				level: +action.item.level
 			});
+
 			localStorage.setItem('jobs', JSON.stringify(state));
 			return [...state];
 

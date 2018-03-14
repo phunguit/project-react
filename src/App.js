@@ -74,19 +74,11 @@ class App extends Component {
     }
 
     render() {
-        let {itemSelected}          = this.state;
-
         return (
             <div className='row'>
-
-                <Title />
-                
-                <Control />
-                
-                <Form 
-                    onClickSubmit={this.handleSubmit}
-                    itemSelected={itemSelected} />
-
+                <Title />                
+                <Control />                
+                <Form />
                 <List onClickEdit={this.handleEdit} />
             </div>
         );
