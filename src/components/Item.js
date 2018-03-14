@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AcOpenForm, AcDelete } from '../actions/index';
+import { AcOpenForm, AcDelete, AcSelectItem } from '../actions/index';
 
 class Item extends Component {
 
@@ -17,7 +17,7 @@ class Item extends Component {
     }
 
     handleEdit(item) {
-      this.props.editForm();
+      this.props.editForm(item);
     }
 
     render() {
@@ -50,8 +50,9 @@ class Item extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editForm: () => {
-      dispatch(AcOpenForm())
+    editForm: (item) => {
+      dispatch(AcOpenForm());
+      dispatch(AcSelectItem(item));
     },
 
     deleteItem: id => {

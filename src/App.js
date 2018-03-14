@@ -3,7 +3,6 @@ import Title from './components/Title';
 import Control from './components/Control';
 import Form from './components/Form';
 import List from './components/List';
-import Jobs from './data/jobs';
 
 import {reject} from 'lodash';
 const uuidv4 = require('uuid/v4');
@@ -14,11 +13,6 @@ class App extends Component {
         super(props);
 
         this.state = {
-            items : Jobs,
-            isShowForm: false,
-            strSearch: '',
-            orderBy: 'name',
-            orderDir: 'desc',
             itemSelected: null
         }
         this.handleSubmit       = this.handleSubmit.bind(this);

@@ -1,31 +1,37 @@
+import * as Types from '../constants/ActionTypes';
+
 export const AcCloseForm = () => {
-	return {type: 'CLOSE_FORM'}
+	return {type: Types.CLOSE_FORM}
 }
 
 export const AcOpenForm = () => {
-	return {type: 'OPEN_FORM'}
+	return {type: Types.OPEN_FORM}
 }
 
 export const AcToggerForm = () => {
-	return {type: 'TOGGER_FORM'}
+	return {type: Types.TOGGER_FORM}
 }
 
 export const AcOrder = (orderBy, orderDir) => {
 	return {
-		type: 'ORDER',
+		type: Types.ORDER,
 		orderBy,
 		orderDir
 	}
 }
 
 export const AcSearch = (strSearch) => {
-	return { type: 'SEARCH', strSearch}
+	return { type: Types.SEARCH, strSearch}
 }
 
 export const AcDelete = id => {
-	return { type: 'DELETE', id }
+	return { type: Types.DELETE, id }
 }
 
 export const AcSubmitForm = (item) => {
-	return { type: 'SUBMIT_FORM', item }
+	return { type: Types.SUBMIT_FORM, item }
+}
+
+export const AcSelectItem = (item) => {
+	return { type: Types.SELECT_ITEM, item}
 }

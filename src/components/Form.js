@@ -18,25 +18,25 @@ class Form extends Component {
     }
 
     componentWillMount() {
-      /*var item = this.props.itemSelected;
+      var item = this.props.itemSelected;
       if(item != null && item.id != null) {
         this.setState({
           id: item.id,
           name: item.name,
           level: item.level
         });
-      }*/
+      }
     }
 
     componentWillReceiveProps(nextProps) {
-      /*var item = nextProps.itemSelected;
+      var item = nextProps.itemSelected;
       if(item != null && item.id != null) {
         this.setState({
           id: item.id,
           name: item.name,
           level: item.level
         });
-      }*/
+      }
     }
 
     handleToggerForm() {
@@ -54,7 +54,7 @@ class Form extends Component {
     }
 
     handleSubmit(e) {
-      this.props.addItem(this.state);
+      this.props.submitForm(this.state);
       this.setState ({
         id: '',
         name: '',
@@ -94,8 +94,8 @@ class Form extends Component {
 }
 
 const mapStateToProps = state => {
-  let isShowForm = state.isShowForm;
-  return { isShowForm };
+  let { isShowForm, itemSelected } = state;
+  return { isShowForm, itemSelected };
 }
 
 const mapDispatchToProps = dispatch => {
@@ -104,7 +104,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(AcToggerForm());
     },
 
-    addItem: (item) => {
+    submitForm: (item) => {
       dispatch(AcSubmitForm(item));
       dispatch(AcToggerForm());
     }

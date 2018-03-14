@@ -1,5 +1,5 @@
 import * as Types from '../constants/ActionTypes';
-import { remove } from 'lodash';
+import { remove, reject } from 'lodash';
 const uuidv4 = require('uuid/v4');
 
 var defaultState = [
@@ -23,14 +23,23 @@ const items = (state = defaultState, action) => {
           	localStorage.setItem('jobs', JSON.stringify(state));
 			return [...state];
 
-		case Types.SUBMIT_FORM:		
+		case Types.SUBMIT_FORM:
+			var id = action.item.id;
+			if(id === '') { // add
+				id = uuidv4();
+			} else { // edit
+            	state = reject(state, {id: action.item.id});
+			}
+
 			state.push({
-				id: uuidv4(),
+				id,
 				name: action.item.name,
 				level: +action.item.level
 			});
 
 			localStorage.setItem('jobs', JSON.stringify(state));
+			var a = [...state];
+			debugger
 			return [...state];
 
 		default:
