@@ -41,7 +41,7 @@ const items = (state = defaultState, action) => {
 			return [...state];
 
 		default:
-			return defaultState;
+			return state;
 	}
 };
 
